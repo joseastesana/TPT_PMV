@@ -208,24 +208,32 @@ main {
 }
 
 /* ========================================================
-   TARJETAS DE MATERIAS
+   TARJETAS DE MATERIAS (Corrección Centrado y Alineación)
    ======================================================== */
 .seccion-materias h2 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
+/* 1. Usamos CSS Grid para que no se deformen en escritorio */
 .grilla-materias {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna en celulares */
     gap: 1.5rem;
+    align-items: stretch; /* Hace que todas las tarjetas de la fila tengan la misma altura */
 }
 
+/* 2. Ajuste de las tarjetas para centrar todo */
 .tarjeta-materia {
     background: var(--color-gris-claro);
     border: 2px solid var(--color-borde);
     border-radius: 12px;
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Apila el contenido verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center; /* Centra los textos */
+    height: 100%;
 }
 
 .tarjeta-materia.activa {
@@ -234,23 +242,70 @@ main {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
+/* 3. El icono ahora va arriba del título para un centrado perfecto */
 .tarjeta-cabecera {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 .tarjeta-cabecera h3 {
     font-size: 1.3rem;
+    line-height: 1.3;
 }
 
 .icono {
-    font-size: 1.8rem;
+    font-size: 2.2rem; /* Icono un poquito más grande para destacar */
+}
+
+/* 4. Magia para alinear botones: El párrafo ocupa el espacio vacío */
+.tarjeta-materia p {
+    flex-grow: 1; 
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+/* 5. Magia para alinear botones: Se pega siempre al fondo */
+.btn-bloque {
+    margin-top: auto; 
+    width: 100%;
 }
 
 .bloqueada {
     opacity: 0.7;
+    justify-content: center; /* Mantiene el contenido bloqueado bien centrado */
+}
+
+/* ========================================================
+   MEDIA QUERIES (ADAPTACIÓN A ESCRITORIO)
+   ======================================================== */
+@media (min-width: 768px) {
+    main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
+
+    .buscador {
+        flex-direction: row;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .buscador input {
+        flex-grow: 1;
+    }
+
+    .buscador .btn {
+        width: auto;
+    }
+
+    /* Aquí evitamos que la 4ta tarjeta se estire gigante */
+    .grilla-materias {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    }
 }
 
 /* ========================================================
