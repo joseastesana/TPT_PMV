@@ -1,0 +1,135 @@
+/* ========================================================
+   ESTILOS ESPECÍFICOS: PÁGINAS DE MATERIAS Y TEMAS
+   ======================================================== */
+
+/* Contenedor general para dar respiro lateral */
+.contenedor-pagina {
+    padding: 2rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ========================================================
+   MIGAS DE PAN (Breadcrumbs)
+   ======================================================== */
+.migas-de-pan {
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.migas-de-pan ol {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.migas-de-pan li {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-texto);
+}
+
+.migas-de-pan li:not(:last-child)::after {
+    content: "›"; /* Flecha separadora */
+    margin-left: 0.5rem;
+    color: var(--color-borde);
+    font-weight: bold;
+}
+
+.migas-de-pan a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.migas-de-pan a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================================
+   CABECERA DE LA MATERIA
+   ======================================================== */
+.cabecera-materia {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-borde);
+}
+
+.titulo-materia-icono {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.icono-grande {
+    font-size: 3.5rem;
+    background-color: var(--color-gris-claro);
+    padding: 1rem;
+    border-radius: 16px;
+    border: 2px solid var(--color-borde);
+}
+
+.titulo-materia-icono h1 {
+    font-size: 2rem;
+    color: var(--color-primario);
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+.titulo-materia-icono p {
+    color: var(--color-texto-suave);
+    font-size: 1.1rem;
+}
+
+/* ========================================================
+   BOTÓN SECUNDARIO (Con borde)
+   ======================================================== */
+.btn-secundario {
+    background-color: transparent;
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    margin-top: auto;
+    width: 100%;
+}
+
+.btn-secundario:hover {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+/* ========================================================
+   BANNER COMUNIDAD
+   ======================================================== */
+.banner-comunidad {
+    background-color: #FFF8E1; /* Amarillo suave/cálido */
+    border: 1px solid #FFE082;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #5D4037;
+}
+
+.banner-comunidad .icono-banner {
+    font-size: 2rem;
+}
+
+/* ========================================================
+   ADAPTACIÓN A CELULARES (Media Queries)
+   ======================================================== */
+@media (max-width: 600px) {
+    .titulo-materia-icono {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .banner-comunidad {
+        flex-direction: column;
+        text-align: center;
+    }
+}
