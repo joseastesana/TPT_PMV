@@ -9,6 +9,10 @@
     margin: 0 auto;
 }
 
+.contenedor-pagina p {
+    max-width: 800px; /* Limita la lectura a un ancho cómodo */
+}
+
 /* ========================================================
    MIGAS DE PAN (Breadcrumbs)
    ======================================================== */
