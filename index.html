@@ -39,17 +39,19 @@
 
     <main id="contenido-principal">
         
-        <section class="hero">
-            <img src="img/logoTPT4.png" alt="" class="hero-logo-grande">
-            <h1>Aprender tecnología<br>es para todos</h1>
-            <p>Recursos visuales e interactivos creados por tus compañeros y validados por docentes.</p>
-            
-            <form class="buscador" role="search">
-                <label for="buscar-tema" class="sr-only">Buscar un tema específico</label>
-                <input type="search" id="buscar-tema" placeholder="Ej: Componentes de PC, Redes LAN...">
-                <button type="submit" class="btn btn-primario">Buscar</button>
-            </form>
-        </section>
+       <section class="hero">
+        <!-- 1. Primero ponemos la caja de la imagen (Izquierda) -->
+        <div class="hero-imagen">
+            <img src="img/logoTPT4.png" alt="Comunidad de aprendizaje" class="img-hero">
+        </div>
+
+        <!-- 2. Después ponemos la caja del texto y botón (Derecha) -->
+        <div class="hero-texto">
+            <h1>Tecnología para todos</h1>
+            <p>Recursos educativos accesibles en lengua de señas para estudiantes de la escuela técnica.</p>
+            <a href="#materias" class="btn btn-primario">Explorar materias</a>
+        </div>
+    </section>
 
         <section id="materias" class="seccion-materias">
             <div class="cabecera-materias">

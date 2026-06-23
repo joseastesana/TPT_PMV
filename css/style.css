@@ -181,32 +181,59 @@ body {
 /* ========================================================
    HERO SECTION (Portada)
    ======================================================== */
+/* --- SECCIÓN HERO --- */
 .hero {
-    text-align: center;
-    padding: 4rem 1rem 3rem;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 4rem 2rem;
+    width: 100%;
 }
 
-.hero-logo-grande {
-    width: 140px;
-    height: auto;
-    margin-bottom: 1.5rem;
+.hero-texto {
+    flex: 1; /* Ocupa la mitad del espacio */
+    max-width: 600px;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    color: var(--color-texto);
+.hero-texto h1 {
+    font-size: 3rem;
     margin-bottom: 1rem;
-    line-height: 1.2;
+    color: var(--color-texto); /* Asegurate de usar el azul oscuro de tu marca si querés */
 }
 
-.hero p {
+.hero-texto p {
     font-size: 1.2rem;
     color: var(--color-texto-suave);
-    max-width: 700px;
-    margin: 0 auto 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.hero-imagen {
+    flex: 1; /* Ocupa la otra mitad del espacio */
+    display: flex;
+    justify-content: center;
+}
+
+.img-hero {
+    max-width: 100%;
+    width: 350px; /* Este es el tamaño máximo que tendrá la imagen/logo */
+    height: auto;
+    object-fit: contain;
+}
+
+/* --- RESPONSIVE PARA CELULARES --- */
+/* Si ya tenés un media query para max-width: 768px, agregá esto adentro */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; /* Apila el texto arriba y la imagen abajo */
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+    
+    .hero-texto h1 {
+        font-size: 2.2rem;
+    }
 }
 
 /* Buscador */
