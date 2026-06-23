@@ -2,23 +2,28 @@
    VARIABLES GLOBALES (Fáciles de mantener)
    ======================================================== */
 :root {
-    --color-primario: #0056b3;
+    /* Basado en el logo: Azul profundo e institucional */
+    --color-primario: #0056b3; 
+    --color-primario-oscuro: #004085;
     --color-primario-hover: #003d82;
+    
     --color-fondo: #ffffff;
     --color-texto: #333333;
     --color-texto-suave: #666666;
-    --color-gris-claro: #f4f4f9;
-    --color-borde: #dddddd;
     
-    /* Variables de tamaño de fuente relativas (em/rem) para accesibilidad */
+    /* Grises para fondos y bordes */
+    --color-gris-claro: #f4f6f9;
+    --color-borde: #e0e4e8;
+    
     --fuente-base: 16px;
+    --fuente-principal: 'Segoe UI', system-ui, sans-serif;
 }
 
 /* ========================================================
    RESET Y ESTILOS BASE (Mobile First)
    ======================================================== */
 html {
-    scroll-behavior: smooth; /* Hace que el deslizamiento sea animado y suave */
+    scroll-behavior: smooth;
 }
 
 * {
@@ -28,14 +33,13 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: var(--fuente-principal);
     background-color: var(--color-fondo);
     color: var(--color-texto);
     font-size: var(--fuente-base);
     line-height: 1.6;
 }
 
-/* Ocultar elementos visualmente pero mantenerlos para lectores de pantalla */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -47,7 +51,6 @@ body {
     border: 0;
 }
 
-/* Enlace "Saltar al contenido" para navegación por teclado */
 .saltar-contenido {
     position: absolute;
     top: -40px;
@@ -58,133 +61,174 @@ body {
     z-index: 100;
     transition: top 0.2s;
 }
+
 .saltar-contenido:focus {
     top: 0;
 }
 
-/* Para que el "Focus" sea bien visible (WCAG) */
 *:focus-visible {
     outline: 3px solid #ff9900;
     outline-offset: 2px;
 }
 
 /* ========================================================
-   ENCABEZADO Y NAVEGACIÓN (Diseñado para pulgares)
+   ENCABEZADO Y NAVEGACIÓN (Diseño Mockup)
    ======================================================== */
 .encabezado-principal {
-    border-bottom: 1px solid var(--color-borde);
+    background-color: var(--color-fondo);
+    padding: 1rem 0 0; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
-    background-color: var(--color-fondo);
-    z-index: 10;
+    z-index: 1000;
 }
 
 .contenedor-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    width: 100%; /* Ocupa todo el ancho */
+    padding: 0 2rem; /* Margen interno de seguridad */
 }
 
-/* Estilos para el nuevo logo en imagen */
-.logo-img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain; /* Evita que el logo se deforme si la imagen no es perfectamente cuadrada */
-    flex-shrink: 0;       /* Evita que el logo se achique en pantallas chicas */
-}
-
+/* El logo */
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: var(--color-texto);
+    gap: 0.8rem;
+    text-decoration: none; 
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.logo-texto {
+    display: flex;
+    flex-direction: column;
 }
 
 .logo-texto strong {
-    display: block;
-    font-size: 1.1rem;
-    line-height: 1.2;
+    font-size: 1.2rem;
+    color: var(--color-primario-oscuro);
+    line-height: 1.1;
 }
 
 .logo-texto span {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--color-texto-suave);
+}
+
+/* Controles Accesibilidad */
+.controles-accesibilidad {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .btn-accesibilidad {
-    background: none;
+    background: white;
     border: 1px solid var(--color-borde);
-    border-radius: 8px;
-    padding: 0.5rem;
-    min-width: 44px; /* ZONA TÁCTIL WCAG */
-    min-height: 44px;
-    font-size: 1.2rem;
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
     cursor: pointer;
+    font-size: 1rem;
+    color: var(--color-texto);
+    transition: all 0.2s ease;
 }
 
-/* Navegación horizontal scrollable para celular */
+.btn-accesibilidad:hover {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+/* Navegación (Pestañas) */
+.navegacion-principal {
+    width: 100%; /* Ocupa todo el ancho */
+    margin: 1.5rem 0 0;
+    padding: 0 2rem; /* Margen interno para alinear con el logo */
+    border-bottom: 2px solid var(--color-gris-claro);
+}
+
 .navegacion-principal ul {
-    display: flex;
     list-style: none;
-    overflow-x: auto; /* Permite deslizar si no entran los items */
-    padding: 0 1rem;
-    gap: 1rem;
-    -webkit-overflow-scrolling: touch;
+    display: flex;
+    gap: 2rem;
 }
 
 .navegacion-principal a {
-    display: block;
-    padding: 1rem 0; /* Zona táctil alta */
     text-decoration: none;
     color: var(--color-texto-suave);
-    font-weight: bold;
-    white-space: nowrap;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding-bottom: 0.8rem;
+    display: inline-block;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.navegacion-principal a:hover {
+    color: var(--color-primario);
 }
 
 .navegacion-principal a.activo {
     color: var(--color-primario);
-    border-bottom: 3px solid var(--color-primario);
+    border-bottom-color: var(--color-primario); 
 }
 
 /* ========================================================
-   CONTENIDO PRINCIPAL Y HERO
+   HERO SECTION (Portada)
    ======================================================== */
-main {
-    padding: 1.5rem 1rem;
-}
-
 .hero {
     text-align: center;
-    margin-bottom: 3rem;
+    padding: 4rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-logo-grande {
+    width: 140px;
+    height: auto;
+    margin-bottom: 1.5rem;
 }
 
 .hero h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+    color: var(--color-texto);
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--color-texto-suave);
-    margin-bottom: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
 }
 
-/* Buscador grande y amigable */
+/* Buscador */
 .buscador {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
     gap: 0.5rem;
+    margin: 0 auto;
 }
 
 .buscador input {
-    padding: 1rem;
+    flex-grow: 1;
+    padding: 0.8rem 1.2rem;
     border: 2px solid var(--color-borde);
     border-radius: 8px;
     font-size: 1rem;
-    width: 100%;
+    outline: none;
+}
+
+.buscador input:focus {
+    border-color: var(--color-primario);
 }
 
 .btn {
@@ -197,7 +241,7 @@ main {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    min-height: 48px; /* ZONA TÁCTIL MÍNIMA MÓVIL */
+    min-height: 48px;
 }
 
 .btn-primario {
@@ -216,31 +260,75 @@ main {
 }
 
 /* ========================================================
-   TARJETAS DE MATERIAS (Corrección Centrado y Alineación)
+   SECCIÓN MATERIAS Y ATAJOS
    ======================================================== */
+.seccion-materias {
+    padding: 2rem 1rem;
+}
+
 .seccion-materias h2 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
-/* 1. Usamos CSS Grid para que no se deformen en escritorio */
-.grilla-materias {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 columna en celulares */
-    gap: 1.5rem;
-    align-items: stretch; /* Hace que todas las tarjetas de la fila tengan la misma altura */
+.cabecera-materias {
+    margin-bottom: 2rem;
 }
 
-/* 2. Ajuste de las tarjetas para centrar todo */
+.atajos-anios {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap; 
+}
+
+.pildora-atajo {
+    background-color: var(--color-gris-claro);
+    color: var(--color-primario);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 1px solid var(--color-borde);
+    flex: 1;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.pildora-atajo:hover, 
+.pildora-atajo:active {
+    background-color: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+}
+
+.titulo-anio {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-gris-claro);
+}
+
+/* ========================================================
+   TARJETAS DE MATERIAS
+   ======================================================== */
+.grilla-materias {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-bottom: 3rem;
+}
+
 .tarjeta-materia {
     background: var(--color-gris-claro);
     border: 2px solid var(--color-borde);
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
-    flex-direction: column; /* Apila el contenido verticalmente */
-    align-items: center; /* Centra los elementos horizontalmente */
-    text-align: center; /* Centra los textos */
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
     height: 100%;
 }
 
@@ -250,7 +338,6 @@ main {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* 3. El icono ahora va arriba del título para un centrado perfecto */
 .tarjeta-cabecera {
     display: flex;
     flex-direction: column;
@@ -265,17 +352,15 @@ main {
 }
 
 .icono {
-    font-size: 2.2rem; /* Icono un poquito más grande para destacar */
+    font-size: 2.2rem;
 }
 
-/* 4. Magia para alinear botones: El párrafo ocupa el espacio vacío */
 .tarjeta-materia p {
     flex-grow: 1; 
     margin-bottom: 1.5rem;
     width: 100%;
 }
 
-/* 5. Magia para alinear botones: Se pega siempre al fondo */
 .btn-bloque {
     margin-top: auto; 
     width: 100%;
@@ -283,37 +368,7 @@ main {
 
 .bloqueada {
     opacity: 0.7;
-    justify-content: center; /* Mantiene el contenido bloqueado bien centrado */
-}
-
-/* ========================================================
-   MEDIA QUERIES (ADAPTACIÓN A ESCRITORIO)
-   ======================================================== */
-@media (min-width: 768px) {
-    main {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 3rem 2rem;
-    }
-
-    .buscador {
-        flex-direction: row;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .buscador input {
-        flex-grow: 1;
-    }
-
-    .buscador .btn {
-        width: auto;
-    }
-
-    /* Aquí evitamos que la 4ta tarjeta se estire gigante */
-    .grilla-materias {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    }
+    justify-content: center; 
 }
 
 /* ========================================================
@@ -329,84 +384,39 @@ main {
 }
 
 /* ========================================================
-   MEDIA QUERIES (ADAPTACIÓN A PANTALLAS GRANDES - PC/TABLET)
-   ======================================================== */
-@media (min-width: 768px) {
-    main {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 3rem 2rem;
-    }
-
-    .buscador {
-        flex-direction: row;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .buscador input {
-        flex-grow: 1;
-    }
-
-    .buscador .btn {
-        width: auto;
-    }
-
-    .grilla-materias {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .tarjeta-materia {
-        flex: 1 1 calc(33.333% - 1.5rem);
-    }
-}
-
-/* ========================================================
-   ATAJOS POR AÑO (Píldoras más grandes)
-   ======================================================== */
-.cabecera-materias {
-    margin-bottom: 2rem;
-}
-
-.atajos-anios {
-    display: flex;
-    gap: 0.8rem; /* Un poquito más de separación entre botones */
-    margin-top: 1.5rem;
-    flex-wrap: wrap; 
-}
-
-.pildora-atajo {
-    background-color: var(--color-gris-claro);
-    color: var(--color-primario);
-    padding: 0.8rem 1.5rem; /* Aumentamos el espacio interno (arriba/abajo y lados) */
-    border-radius: 30px; /* Bordes un poco más redondeados para acompañar el nuevo tamaño */
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem; /* Letra más grande (antes era 0.9rem) */
-    border: 2px solid var(--color-borde); /* Borde un poco más grueso */
-    min-height: 54px; /* Aumentamos la zona táctil (antes era 44px) */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center; /* Centra el texto perfectamente */
-    flex-grow: 1; /* NUEVO: Hace que los botones se estiren para ocupar el espacio disponible en el celular */
-    text-align: center;
-    transition: all 0.2s ease; /* Transición suave para el color */
-}
-
-.pildora-atajo:hover, 
-.pildora-atajo:active {
-    background-color: var(--color-primario);
-    color: white;
-    border-color: var(--color-primario);
-}
-
-/* ========================================================
    COMPENSACIÓN PARA EL MENÚ FIJO (Scroll Margin)
    ======================================================== */
 #materias,
 #anio-4,
 #anio-5,
 #anio-6 {
-    scroll-margin-top: 100px; /* Evita que el encabezado tape el título al hacer clic */
+    scroll-margin-top: 130px; /* Aumentado un poco por el menú de dos líneas */
+}
+
+/* ========================================================
+   MEDIA QUERIES (ADAPTACIÓN A ESCRITORIO - UNIFICADO)
+   ======================================================== */
+@media (min-width: 768px) {
+    main, .seccion-materias {
+        max-width: 100%; /* Eliminamos el límite de 1000px */
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .hero {
+        padding: 5rem 2rem 4rem;
+    }
+
+    .buscador {
+        flex-direction: row;
+    }
+
+    .buscador .btn {
+        width: auto;
+    }
+
+    /* Grilla fluida usando CSS Grid puro (mucho mejor que flexbox para esto) */
+    .grilla-materias {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    }
 }
