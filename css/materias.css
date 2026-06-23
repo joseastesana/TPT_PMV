@@ -4,8 +4,8 @@
 
 /* Contenedor general para dar respiro lateral */
 .contenedor-pagina {
-    padding: 2rem 1rem;
-    max-width: 1000px;
+    padding: 2rem;
+    width: 100%; /* Ahora sí, ocupa todo el ancho de la pantalla */
     margin: 0 auto;
 }
 
