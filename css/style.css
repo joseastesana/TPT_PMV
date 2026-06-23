@@ -86,6 +86,14 @@ body {
     padding: 1rem;
 }
 
+/* Estilos para el nuevo logo en imagen */
+.logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain; /* Evita que el logo se deforme si la imagen no es perfectamente cuadrada */
+    flex-shrink: 0;       /* Evita que el logo se achique en pantallas chicas */
+}
+
 .logo {
     display: flex;
     align-items: center;
