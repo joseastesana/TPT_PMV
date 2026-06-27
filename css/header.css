@@ -136,7 +136,7 @@
 }
 
 /* ==========================================================================
-   EFECTO SCROLL EN MÓVIL
+   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
    ========================================================================== */
 .encabezado-compacto .contenedor-header {
     padding: 0.4rem 1rem;
@@ -148,10 +148,16 @@
     font-size: 1.1rem;
 }
 
-/* NUEVO: Achica la altura de la navegación en móviles */
-.encabezado-compacto .navegacion-principal a {
-    padding: 0.4rem 0; 
-    font-size: 0.85rem; /* Achicamos penitas la letra también */
+/* NUEVO: Reduce el espacio entre botones en móviles al hacer scroll */
+.encabezado-compacto .controles-accesibilidad {
+    gap: 0.25rem; 
+}
+
+/* NUEVO: Achica los botones de accesibilidad (letra y relleno) en móviles */
+.encabezado-compacto .btn-accesibilidad {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 4px; /* Un poquito menos redondeado para mantener la proporción */
 }
 
 
@@ -259,4 +265,29 @@
         padding: 0.5rem 0; /* Reduce a la mitad el relleno vertical */
         font-size: 0.95rem; /* Letra un poquito más chica */
     }
+}
+
+/* ==========================================================================
+   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
+   ========================================================================== */
+.encabezado-compacto .contenedor-header {
+    padding: 0.4rem 1rem;
+}
+.encabezado-compacto .logo-img-banner {
+    height: 40px;
+}
+.encabezado-compacto .logo-texto-lineal h1 {
+    font-size: 1.1rem;
+}
+
+/* NUEVO: Reduce el espacio entre botones en móviles al hacer scroll */
+.encabezado-compacto .controles-accesibilidad {
+    gap: 0.25rem; 
+}
+
+/* NUEVO: Achica los botones de accesibilidad (letra y relleno) en móviles */
+.encabezado-compacto .btn-accesibilidad {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 4px; /* Un poquito menos redondeado para mantener la proporción */
 }
