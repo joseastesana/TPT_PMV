@@ -1,27 +1,54 @@
-/* ========================================================
-   VARIABLES GLOBALES (Fáciles de mantener)
-   ======================================================== */
+/* ==========================================================================
+   VARIABLES GLOBALES Y TEMAS (Día / Noche)
+   ========================================================================== */
 :root {
-    /* Basado en el logo: Azul profundo e institucional */
+    /* Paleta base principal */
     --color-primario: #0056b3; 
     --color-primario-oscuro: #004085;
     --color-primario-hover: #003d82;
     
-    --color-fondo: #ffffff;
+    /* Variables para el fondo general (TEMA CLARO - DEFECTO) */
+    --color-fondo: white; /* Celeste muy suave para toda la página */
     --color-texto: #333333;
     --color-texto-suave: #666666;
     
     /* Grises para fondos y bordes */
-    --color-gris-claro: #f4f6f9;
+    --color-gris-claro: #ffffff; /* Tarjetas blancas sobre el fondo celeste */
     --color-borde: #e0e4e8;
+    
+    /* Variables ESPECÍFICAS para el Banner/Header */
+    --color-fondo-header: #e6f2ff; /* Celeste clarito del banner */
+    --color-texto-header: #0c2340; /* Azul marino oscuro para contrastar */
+    --color-texto-sub-header: #4a5568; 
+    --color-acento-header: #0056b3;
+    --color-borde-menu: #d2e6ff;
     
     --fuente-base: 16px;
     --fuente-principal: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* ========================================================
-   RESET Y ESTILOS BASE (Mobile First)
-   ======================================================== */
+/* ==========================================================================
+   TEMA OSCURO (Se activa con JavaScript)
+   ========================================================================== */
+[data-tema="oscuro"] {
+    --color-fondo: #121212; 
+    --color-texto: #f0f0f0;
+    --color-texto-suave: #a0a0a0;
+    
+    --color-gris-claro: #1e1e1e; /* Tarjetas en gris oscuro */
+    --color-borde: #333333;
+    
+    /* Colores oscuros para el Banner */
+    --color-fondo-header: #1e293b; /* Azul pizarra oscuro */
+    --color-texto-header: #93c5fd; /* Celeste brillante */
+    --color-texto-sub-header: #cbd5e1;
+    --color-acento-header: #60a5fa;
+    --color-borde-menu: #334155;
+}
+
+/* ==========================================================================
+   RESET Y ESTILOS BASE
+   ========================================================================== */
 html {
     scroll-behavior: smooth;
 }
@@ -38,6 +65,8 @@ body {
     color: var(--color-texto);
     font-size: var(--fuente-base);
     line-height: 1.6;
+    /* Transición suave para cuando cambia al Modo Oscuro */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sr-only {
@@ -51,85 +80,90 @@ body {
     border: 0;
 }
 
-.saltar-contenido {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--color-primario);
-    color: white;
-    padding: 8px;
-    z-index: 100;
-    transition: top 0.2s;
-}
-
-.saltar-contenido:focus {
-    top: 0;
-}
-
-*:focus-visible {
-    outline: 3px solid #ff9900;
-    outline-offset: 2px;
-}
-
-/* ========================================================
-   ENCABEZADO Y NAVEGACIÓN (Diseño Mockup)
-   ======================================================== */
+/* ==========================================================================
+   HEADER / BANNER (Ancho completo)
+   ========================================================================== */
 .encabezado-principal {
-    background-color: var(--color-fondo);
-    padding: 1rem 0 0; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background-color: var(--color-fondo-header);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 .contenedor-header {
+    position: relative; /* FUNDAMENTAL: Permite posicionar los botones a la derecha */
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* CAMBIO: Centra el bloque del logo y texto */
     align-items: center;
-    width: 100%; /* Ocupa todo el ancho */
-    padding: 0 2rem; /* Margen interno de seguridad */
+    width: 100%;
+    max-width: 100%; 
+    padding: 1.5rem 2rem 2rem; /* Un poco más de aire abajo */
+    box-sizing: border-box;
 }
 
-/* El logo */
-.logo {
+/* Lado izquierdo: Logo y Textos */
+.logo-banner {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    text-decoration: none; 
+    gap: 2rem; /* CAMBIO: Un poco más de separación entre logo y texto */
+    text-decoration: none;
 }
 
-.logo-img {
-    width: 45px;
-    height: 45px;
+.logo-img-banner {
+    height: 200px; /* CAMBIO: Forzamos un tamaño más grande similar al primer diseño */
+    width: auto;
     object-fit: contain;
     flex-shrink: 0;
 }
 
-.logo-texto {
+.logo-texto-lineal {
     display: flex;
     flex-direction: column;
+    gap: 0.3rem;
 }
 
-.logo-texto strong {
-    font-size: 1.2rem;
-    color: var(--color-primario-oscuro);
+.logo-texto-lineal h1 {
+    font-size: 3rem; /* CAMBIO: Letra mucho más grande */
+    font-weight: 700;
+    color: var(--color-texto-header);
+    margin: 0;
     line-height: 1.1;
+    transition: color 0.3s ease;
 }
 
-.logo-texto span {
-    font-size: 0.85rem;
-    color: var(--color-texto-suave);
+.logo-texto-lineal .tagline {
+    font-size: 1.5rem; /* CAMBIO: Letra más grande */
+    font-weight: 500;
+    color: var(--color-texto-sub-header);
+    margin: 0;
+    transition: color 0.3s ease;
 }
 
-/* Controles Accesibilidad */
+.logo-texto-lineal .brand-block {
+    font-size: 1.1rem; /* CAMBIO: Letra más grande */
+    font-weight: 700; /* CAMBIO: En negrita */
+    text-transform: none; /* CAMBIO: Quitamos el uppercase para respetar las minúsculas */
+    color: var(--color-acento-header);
+    margin-top: 0.3rem;
+    transition: color 0.3s ease;
+}
+
+/* Lado derecho: Controles de accesibilidad */
 .controles-accesibilidad {
+    position: absolute; /* CAMBIO: Los saca del flujo normal para fijarlos a la derecha */
+    right: 2rem;
+    top: 1.5rem;
     display: flex;
     gap: 0.5rem;
 }
 
 .btn-accesibilidad {
-    background: white;
+    background: var(--color-gris-claro);
     border: 1px solid var(--color-borde);
     border-radius: 6px;
     padding: 0.4rem 0.6rem;
@@ -144,12 +178,15 @@ body {
     color: var(--color-primario);
 }
 
-/* Navegación (Pestañas) */
+/* ==========================================================================
+   NAVEGACIÓN PRINCIPAL
+   ========================================================================== */
 .navegacion-principal {
-    width: 100%; /* Ocupa todo el ancho */
-    margin: 1.5rem 0 0;
-    padding: 0 2rem; /* Margen interno para alinear con el logo */
-    border-bottom: 2px solid var(--color-gris-claro);
+    width: 100%;
+    margin-top: 0;
+    padding: 0 2rem;
+    border-bottom: 2px solid var(--color-borde-menu);
+    transition: border-color 0.3s ease;
 }
 
 .navegacion-principal ul {
@@ -175,74 +212,29 @@ body {
 
 .navegacion-principal a.activo {
     color: var(--color-primario);
-    border-bottom-color: var(--color-primario); 
+    border-bottom-color: var(--color-primario);
 }
 
-/* ========================================================
-   HERO SECTION (Portada)
-   ======================================================== */
-/* --- SECCIÓN HERO --- */
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-    padding: 4rem 2rem;
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL Y BUSCADOR
+   ========================================================================== */
+.contenedor-pagina, main {
+    padding: 2rem;
     width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.hero-texto {
-    flex: 1; /* Ocupa la mitad del espacio */
-    max-width: 600px;
+.contenedor-pagina p, main p {
+    max-width: 800px;
 }
 
-.hero-texto h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--color-texto); /* Asegurate de usar el azul oscuro de tu marca si querés */
-}
-
-.hero-texto p {
-    font-size: 1.2rem;
-    color: var(--color-texto-suave);
-    margin-bottom: 2rem;
-    line-height: 1.5;
-}
-
-.hero-imagen {
-    flex: 1; /* Ocupa la otra mitad del espacio */
-    display: flex;
-    justify-content: center;
-}
-
-.img-hero {
-    max-width: 100%;
-    width: 350px; /* Este es el tamaño máximo que tendrá la imagen/logo */
-    height: auto;
-    object-fit: contain;
-}
-
-/* --- RESPONSIVE PARA CELULARES --- */
-/* Si ya tenés un media query para max-width: 768px, agregá esto adentro */
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column; /* Apila el texto arriba y la imagen abajo */
-        text-align: center;
-        padding: 2rem 1rem;
-    }
-    
-    .hero-texto h1 {
-        font-size: 2.2rem;
-    }
-}
-
-/* Buscador */
 .buscador {
     display: flex;
     width: 100%;
     max-width: 600px;
     gap: 0.5rem;
-    margin: 0 auto;
+    margin: 2rem auto; /* Ajustado para separar del banner */
 }
 
 .buscador input {
@@ -251,13 +243,19 @@ body {
     border: 2px solid var(--color-borde);
     border-radius: 8px;
     font-size: 1rem;
+    background-color: var(--color-gris-claro);
+    color: var(--color-texto);
     outline: none;
+    transition: all 0.3s ease;
 }
 
 .buscador input:focus {
     border-color: var(--color-primario);
 }
 
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
 .btn {
     padding: 1rem 1.5rem;
     border: none;
@@ -269,6 +267,7 @@ body {
     text-decoration: none;
     display: inline-block;
     min-height: 48px;
+    transition: background-color 0.2s ease;
 }
 
 .btn-primario {
@@ -286,13 +285,9 @@ body {
     margin-top: 1rem;
 }
 
-/* ========================================================
-   SECCIÓN MATERIAS Y ATAJOS
-   ======================================================== */
-.seccion-materias {
-    padding: 2rem 1rem;
-}
-
+/* ==========================================================================
+   SECCIÓN MATERIAS Y ATAJOS (Píldoras de Años)
+   ========================================================================== */
 .seccion-materias h2 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -306,7 +301,7 @@ body {
     display: flex;
     gap: 0.8rem;
     margin-top: 1.5rem;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .pildora-atajo {
@@ -333,15 +328,15 @@ body {
 .titulo-anio {
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-gris-claro);
+    border-bottom: 2px solid var(--color-borde);
 }
 
-/* ========================================================
+/* ==========================================================================
    TARJETAS DE MATERIAS
-   ======================================================== */
+   ========================================================================== */
 .grilla-materias {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     align-items: stretch;
     margin-bottom: 3rem;
@@ -353,15 +348,15 @@ body {
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    text-align: center; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     height: 100%;
+    transition: all 0.3s ease;
 }
 
 .tarjeta-materia.activa {
     border-color: var(--color-primario);
-    background: white;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
@@ -383,24 +378,19 @@ body {
 }
 
 .tarjeta-materia p {
-    flex-grow: 1; 
+    flex-grow: 1;
     margin-bottom: 1.5rem;
-    width: 100%;
-}
-
-.btn-bloque {
-    margin-top: auto; 
     width: 100%;
 }
 
 .bloqueada {
     opacity: 0.7;
-    justify-content: center; 
+    justify-content: center;
 }
 
-/* ========================================================
+/* ==========================================================================
    FOOTER
-   ======================================================== */
+   ========================================================================== */
 .pie-pagina {
     background-color: var(--color-gris-claro);
     padding: 2rem 1rem;
@@ -408,42 +398,53 @@ body {
     font-size: 0.9rem;
     color: var(--color-texto-suave);
     margin-top: 2rem;
+    border-top: 1px solid var(--color-borde);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ========================================================
-   COMPENSACIÓN PARA EL MENÚ FIJO (Scroll Margin)
-   ======================================================== */
+/* ==========================================================================
+   COMPENSACIÓN PARA EL MENÚ FIJO (Para que al tocar 4to, 5to o 6to baje bien)
+   ========================================================================== */
 #materias,
 #anio-4,
 #anio-5,
 #anio-6 {
-    scroll-margin-top: 130px; /* Aumentado un poco por el menú de dos líneas */
+    scroll-margin-top: 150px;
 }
 
-/* ========================================================
-   MEDIA QUERIES (ADAPTACIÓN A ESCRITORIO - UNIFICADO)
-   ======================================================== */
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE PARA CELULARES Y ESCRITORIO)
+   ========================================================================== */
 @media (min-width: 768px) {
-    main, .seccion-materias {
-        max-width: 100%; /* Eliminamos el límite de 1000px */
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
-    .hero {
-        padding: 5rem 2rem 4rem;
-    }
-
     .buscador {
         flex-direction: row;
     }
-
+    
     .buscador .btn {
         width: auto;
     }
-
-    /* Grilla fluida usando CSS Grid puro (mucho mejor que flexbox para esto) */
+    
+    /* Grilla de materias con CSS Grid fluido para PC */
     .grilla-materias {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajustes específicos para celulares */
+    .logo-texto-lineal h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo-texto-lineal .tagline {
+        font-size: 0.9rem;
+    }
+    
+    .logo-texto-lineal .brand-block {
+        display: none; /* Ocultamos el texto secundario en móviles por espacio */
+    }
+    
+    .contenedor-header {
+        padding: 1rem;
     }
 }

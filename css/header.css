@@ -1,0 +1,224 @@
+/* ==========================================================================
+   ESTILOS BASE: OPTIMIZADO PARA MÓVILES (Pantallas chicas)
+   ========================================================================== */
+
+.encabezado-principal {
+    background-color: var(--color-fondo-header, #eaf3fc);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+/* Contenedor en móvil: distribución simple a los lados */
+.contenedor-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 1rem; /* Padding compacto en celulares */
+    box-sizing: border-box;
+    transition: padding 0.3s ease; /* Transición para el scroll */
+}
+
+.logo-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+}
+
+.logo-img-banner {
+    height: 50px; /* Logo chico en celular */
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: height 0.3s ease;
+}
+
+.logo-texto-lineal {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-texto-lineal h1 {
+    font-size: 1.3rem; /* Título legible pero compacto */
+    font-weight: 700;
+    color: var(--color-texto-header, #0b3469);
+    margin: 0;
+    line-height: 1.1;
+    transition: font-size 0.3s ease;
+}
+
+/* EN MÓVILES OCULTAMOS LOS TEXTOS LARGOS: No hay espacio físico */
+.logo-texto-lineal .tagline,
+.logo-texto-lineal .brand-block {
+    display: none; 
+}
+
+/* Botones de accesibilidad en móvil */
+.controles-accesibilidad {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.btn-accesibilidad {
+    background: var(--color-gris-claro, #f0f0f0);
+    border: 1px solid var(--color-borde, #ccc);
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-texto, #333);
+}
+
+/* Menú de navegación en móvil (Scroll horizontal si no entran los links) */
+.navegacion-principal {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 1rem;
+    overflow-x: auto; 
+    white-space: nowrap;
+}
+
+.navegacion-principal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navegacion-principal a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.8rem 0;
+    display: inline-block;
+    border-bottom: 3px solid transparent;
+}
+
+.navegacion-principal a:hover,
+.navegacion-principal a.activo {
+    color: var(--color-texto-header, #0b3469);
+    border-bottom: 3px solid var(--color-texto-header, #0b3469);
+}
+
+/* ==========================================================================
+   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
+   ========================================================================== */
+.encabezado-compacto .contenedor-header {
+    padding: 0.4rem 1rem;
+}
+.encabezado-compacto .logo-img-banner {
+    height: 40px;
+}
+.encabezado-compacto .logo-texto-lineal h1 {
+    font-size: 1.1rem;
+}
+
+
+/* ==========================================================================
+   MEDIA QUERY: PANTALLAS GRANDES (Tablets y Computadoras >= 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+    
+    /* El contenedor pasa a estar centrado como en tu diseño principal */
+    .contenedor-header {
+        position: relative;
+        justify-content: center; 
+        padding: 1.8rem 2rem 2.2rem;
+    }
+
+    .logo-banner {
+        gap: 2rem;
+    }
+
+    .logo-img-banner {
+        height: 120px; /* Logo grande original */
+    }
+
+    .logo-texto-lineal h1 {
+        font-size: 3rem; /* Título gigante */
+    }
+
+    /* Volvemos a mostrar y dar estilo a los subtítulos en PC */
+    .logo-texto-lineal .tagline {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--color-texto-sub-header, #555555);
+        margin: 0.2rem 0 0.4rem;
+        opacity: 1;
+        max-height: 40px;
+        transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+    }
+
+    .logo-texto-lineal .brand-block {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: none;
+        color: var(--color-acento-header, #0b3469);
+        opacity: 1;
+        max-height: 40px;
+        transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+    }
+
+    /* Flotamos los botones a la derecha absoluta para que no molesten al centro */
+    .controles-accesibilidad {
+        position: absolute;
+        right: 2rem;
+        top: 1.8rem;
+        transition: top 0.3s ease;
+    }
+
+    .btn-accesibilidad {
+        padding: 0.4rem 0.6rem;
+        font-size: 1rem;
+    }
+
+    .navegacion-principal {
+        padding: 0 4rem;
+    }
+
+    .navegacion-principal a {
+        font-size: 1.05rem;
+        padding: 1rem 0;
+    }
+
+    /* ==========================================================================
+       EFECTO SCROLL EN PC (Aquí se redefine el tamaño drásticamente)
+       ========================================================================== */
+    
+    .encabezado-compacto .contenedor-header {
+        padding: 0.6rem 2rem; /* Achicamos márgenes */
+    }
+
+    .encabezado-compacto .logo-img-banner {
+        height: 60px; /* El logo se reduce a la mitad */
+    }
+
+    .encabezado-compacto .logo-texto-lineal h1 {
+        font-size: 1.8rem; /* La letra se achica */
+    }
+
+    /* Escondemos los subtítulos colapsando su espacio de forma fluida */
+    .encabezado-compacto .logo-texto-lineal .tagline,
+    .encabezado-compacto .logo-texto-lineal .brand-block {
+        opacity: 0;
+        max-height: 0;
+        margin: 0;
+        pointer-events: none; /* Evita que sean interactivos invisibles */
+    }
+
+    /* Acomodamos los botones flotantes verticales */
+    .encabezado-compacto .controles-accesibilidad {
+        top: 0.9rem;
+    }
+}
