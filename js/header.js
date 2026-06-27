@@ -1,22 +1,27 @@
-// Esperamos a que el DOM (HTML) esté completamente cargado para evitar errores
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Seleccionamos la etiqueta header mediante su clase
     const header = document.querySelector('.encabezado-principal');
+    
+    // Esta variable funciona como un "candado"
+    let esperandoFotograma = false;
 
-    // Función que evalúa la posición del scroll
     const evaluarScrollHeader = () => {
-        // window.scrollY nos dice cuántos píxeles bajó el usuario
         if (window.scrollY > 50) {
             header.classList.add('encabezado-compacto');
         } else {
             header.classList.remove('encabezado-compacto');
         }
+        // Una vez que se aplicó el cambio, abrimos el candado
+        esperandoFotograma = false;
     };
 
-    // Escuchamos el evento 'scroll' del navegador
-    window.addEventListener('scroll', evaluarScrollHeader);
+    window.addEventListener('scroll', () => {
+        // Si el candado está abierto, pedimos un nuevo fotograma
+        if (!esperandoFotograma) {
+            window.requestAnimationFrame(evaluarScrollHeader);
+            esperandoFotograma = true; // Cerramos el candado hasta el próximo frame
+        }
+    });
     
-    // Ejecutamos una vez al cargar por si la página ya inicia con scroll (F5)
+    // Evaluamos al cargar la página por si el usuario actualizó a mitad del contenido
     evaluarScrollHeader();
 });

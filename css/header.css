@@ -11,7 +11,7 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease;
+   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Contenedor en móvil: distribución simple a los lados */
@@ -22,7 +22,7 @@
     width: 100%;
     padding: 0.8rem 1rem; /* Padding compacto en celulares */
     box-sizing: border-box;
-    transition: padding 0.3s ease; /* Transición para el scroll */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Transición para el scroll */
 }
 
 .logo-banner {
@@ -98,9 +98,10 @@
     color: #666;
     font-size: 0.95rem;
     font-weight: 600;
-    padding: 0.8rem 0;
+    padding: 0.8rem 0; /* Relleno original en móvil */
     display: inline-block;
     border-bottom: 3px solid transparent;
+    transition: all 0.3s ease; /* ¡Fundamental para que se achique suavemente! */
 }
 
 .navegacion-principal a:hover,
@@ -109,8 +110,33 @@
     border-bottom: 3px solid var(--color-texto-header, #0b3469);
 }
 
+.logo-texto-lineal h1,
+.logo-texto-lineal .tagline,
+.logo-texto-lineal .brand-block {
+    /* Estas tres líneas evitan los saltos de renglón al animar */
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
 /* ==========================================================================
-   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
+   OPTIMIZACIÓN DE ANIMACIONES (Hardware Acceleration)
+   ========================================================================== */
+.contenedor-header,
+.logo-img-banner,
+.logo-texto-lineal h1,
+.logo-texto-lineal .tagline,
+.logo-texto-lineal .brand-block,
+.navegacion-principal a {
+    /* Le avisa al navegador qué propiedades van a animarse para que se prepare */
+    will-change: padding, height, font-size, opacity, max-height;
+    
+    /* Fuerza a la GPU a renderizar el elemento */
+    transform: translateZ(0);
+}
+
+/* ==========================================================================
+   EFECTO SCROLL EN MÓVIL
    ========================================================================== */
 .encabezado-compacto .contenedor-header {
     padding: 0.4rem 1rem;
@@ -120,6 +146,12 @@
 }
 .encabezado-compacto .logo-texto-lineal h1 {
     font-size: 1.1rem;
+}
+
+/* NUEVO: Achica la altura de la navegación en móviles */
+.encabezado-compacto .navegacion-principal a {
+    padding: 0.4rem 0; 
+    font-size: 0.85rem; /* Achicamos penitas la letra también */
 }
 
 
@@ -220,5 +252,11 @@
     /* Acomodamos los botones flotantes verticales */
     .encabezado-compacto .controles-accesibilidad {
         top: 0.9rem;
+    }
+
+    /* NUEVO: Achica la altura de la navegación en monitores grandes */
+    .encabezado-compacto .navegacion-principal a {
+        padding: 0.5rem 0; /* Reduce a la mitad el relleno vertical */
+        font-size: 0.95rem; /* Letra un poquito más chica */
     }
 }
