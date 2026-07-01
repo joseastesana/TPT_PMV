@@ -1,27 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.encabezado-principal');
-    
-    // Esta variable funciona como un "candado"
     let esperandoFotograma = false;
 
     const evaluarScrollHeader = () => {
-        if (window.scrollY > 50) {
-            header.classList.add('encabezado-compacto');
+        // Verificamos si la pantalla es de un celular (menor a 768px de ancho)
+        const esCelular = window.innerWidth < 768;
+
+        if (esCelular) {
+            // Lógica para celulares: achicamos al bajar más de 80px
+            if (window.scrollY > 80) {
+                header.classList.add('encabezado-compacto');
+            } else {
+                header.classList.remove('encabezado-compacto');
+            }
         } else {
+            // Lógica para PC: siempre garantizamos que tenga su tamaño original
             header.classList.remove('encabezado-compacto');
         }
-        // Una vez que se aplicó el cambio, abrimos el candado
+        
         esperandoFotograma = false;
     };
 
+    // Escuchamos el scroll
     window.addEventListener('scroll', () => {
-        // Si el candado está abierto, pedimos un nuevo fotograma
         if (!esperandoFotograma) {
             window.requestAnimationFrame(evaluarScrollHeader);
-            esperandoFotograma = true; // Cerramos el candado hasta el próximo frame
+            esperandoFotograma = true;
+        }
+    });
+
+    // NUEVO: Escuchamos si el usuario redimensiona la ventana
+    window.addEventListener('resize', () => {
+        if (!esperandoFotograma) {
+            window.requestAnimationFrame(evaluarScrollHeader);
+            esperandoFotograma = true;
         }
     });
     
-    // Evaluamos al cargar la página por si el usuario actualizó a mitad del contenido
+    // Evaluamos al cargar la página
     evaluarScrollHeader();
 });

@@ -46,7 +46,7 @@
 }
 
 .logo-texto-lineal h1 {
-    font-size: 1.3rem; /* Título legible pero compacto */
+    font-size: 2 rem; /* Título legible pero compacto */
     font-weight: 700;
     color: var(--color-texto-header, #0b3469);
     margin: 0;
@@ -117,6 +117,7 @@
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
+    padding-bottom: 6px;
 }
 
 /* ==========================================================================
@@ -166,56 +167,35 @@
    ========================================================================== */
 @media (min-width: 768px) {
     
-    /* El contenedor pasa a estar centrado como en tu diseño principal */
+    /* Ajustamos el contenedor para que tenga menos relleno (padding) arriba y abajo */
     .contenedor-header {
         position: relative;
         justify-content: center; 
-        padding: 1.8rem 2rem 2.2rem;
+        padding: 1rem 2rem 1.2rem; /* Antes era 1.8rem, ahora es más finito */
     }
 
-    .logo-banner {
-        gap: 2rem;
-    }
-
+    /* Achicamos un poco el logo base */
     .logo-img-banner {
-        height: 120px; /* Logo grande original */
+        height: 85px; /* Antes era 120px */
     }
 
+    /* Achicamos la tipografía principal */
     .logo-texto-lineal h1 {
-        font-size: 3rem; /* Título gigante */
+        font-size: 2.2 rem; /* Antes era 3rem */
     }
 
-    /* Volvemos a mostrar y dar estilo a los subtítulos en PC */
     .logo-texto-lineal .tagline {
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: var(--color-texto-sub-header, #555555);
-        margin: 0.2rem 0 0.4rem;
-        opacity: 1;
-        max-height: 40px;
-        transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+        font-size: 1.2rem; /* Antes era 1.5rem */
     }
 
     .logo-texto-lineal .brand-block {
-        display: block;
-        font-size: 1.1rem;
-        font-weight: 700;
-        text-transform: none;
-        color: var(--color-acento-header, #0b3469);
-        opacity: 1;
-        max-height: 40px;
-        transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+        font-size: 0.95rem; /* Antes era 1.1rem */
     }
 
-    /* Flotamos los botones a la derecha absoluta para que no molesten al centro */
+    /* Subimos un poquito los botones para que queden centrados con la nueva altura */
     .controles-accesibilidad {
-        position: absolute;
-        right: 2rem;
-        top: 1.8rem;
-        transition: top 0.3s ease;
+        top: 1rem; 
     }
-
     .btn-accesibilidad {
         padding: 0.4rem 0.6rem;
         font-size: 1rem;
@@ -230,42 +210,16 @@
         padding: 1rem 0;
     }
 
-    /* ==========================================================================
-       EFECTO SCROLL EN PC (Aquí se redefine el tamaño drásticamente)
-       ========================================================================== */
-    
-    .encabezado-compacto .contenedor-header {
-        padding: 0.6rem 2rem; /* Achicamos márgenes */
+    .contenedor-header {
+        /* Agregá estas dos líneas a tu .contenedor-header */
+        max-width: 1200px; /* O el ancho que estés usando en tu contenedor-ancho principal */
+        margin: 0 auto;    /* Centra el contenedor si la pantalla es más grande que 1200px */
     }
 
-    .encabezado-compacto .logo-img-banner {
-        height: 60px; /* El logo se reduce a la mitad */
+    .navegacion-principal a {
+        padding: 0.6rem 0; /* Hacemos que la franja blanca de los links sea más angosta */
     }
 
-    .encabezado-compacto .logo-texto-lineal h1 {
-        font-size: 1.8rem; /* La letra se achica */
-    }
-
-    /* Escondemos los subtítulos colapsando su espacio de forma fluida */
-    .encabezado-compacto .logo-texto-lineal .tagline,
-    .encabezado-compacto .logo-texto-lineal .brand-block {
-        opacity: 0;
-        max-height: 0;
-        margin: 0;
-        pointer-events: none; /* Evita que sean interactivos invisibles */
-    }
-
-    /* Acomodamos los botones flotantes verticales */
-    .encabezado-compacto .controles-accesibilidad {
-        top: 0.9rem;
-    }
-
-    /* NUEVO: Achica la altura de la navegación en monitores grandes */
-    .encabezado-compacto .navegacion-principal a {
-        padding: 0.5rem 0; /* Reduce a la mitad el relleno vertical */
-        font-size: 0.95rem; /* Letra un poquito más chica */
-    }
-}
 
 /* ==========================================================================
    EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
